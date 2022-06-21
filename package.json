@@ -1,0 +1,52 @@
+{
+  "name": "hiresmith",
+  "version": "0.1.0",
+  "description": "an all in one interview question app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/server.js",
+    "dev": "webpack-dev-server --hot --open && nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HireSmith/reinforcement.git"
+  },
+  "keywords": [
+    "interview"
+  ],
+  "author": "Antonio Ayala, Ju Kim, Hannah Santoyo, Thomas Seo, Tristen Francis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HireSmith/reinforcement/issues"
+  },
+  "homepage": "https://github.com/HireSmith/reinforcement#readme",
+  "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-react": "^7.17.12",
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^6.7.1",
+    "express": "^4.18.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mongoose": "^6.4.0",
+    "nodemon": "^2.0.16",
+    "path": "^0.12.7",
+    "style-loader": "^3.3.1",
+    "styles-loader": "^4.0.1",
+    "ts-loader": "^9.3.0",
+    "typescript": "^4.7.4",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.2"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router": "^6.3.0",
+    "redux": "^4.2.0"
+  }
+}
