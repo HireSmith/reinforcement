@@ -1,10 +1,12 @@
 const path = require('path');
+const webpack = require('webpack');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: './index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, './dist'),
     filename: 'hiresmith.bundle.js',
   },
   module: {
@@ -34,11 +36,32 @@ module.exports = {
   optimization: {
     sideEffects: true,
   },
-  resolve: {
-    modules: ['node_modules'],
-  },
+  // resolve: {
+  //   modules: ['node_modules'],
+  // },
+  // devServer: {
+  //   proxy: {
+  //     '/': 'http://localhost:3000',
+  //   },
+  // },
   devServer: {
-    static: ['./src/assets'],
-    port: 8080
-  }
+    static: path.resolve(__dirname, './dist'),
+    host: 'localhost',
+    port: 8080,
+    hot: true,
+    proxy: {
+      "/api/**": {
+        target: "http://localhost:3000/",
+        secure: false,
+      },
+    },
+  },
+  plugins: [
+    new HTMLWebpackPlugin({
+      template: './src/assets/index.html',
+    }),
+  ],
+  resolve: {
+    extensions: ['.js', '.jsx', '.json', '.css'],
+  },
 };
