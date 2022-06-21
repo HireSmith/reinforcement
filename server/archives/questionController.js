@@ -1,4 +1,4 @@
-const { Question } = require('../models/questionModels.js');
+const { Question } = require('./questionModels.js');
 
 const questionController = {};
 
