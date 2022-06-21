@@ -11,23 +11,21 @@ mongoose
 
 const Schema = mongoose.Schema;
 
-// Initialize a new schema object for collection 'user'
+// Saving user's username/password
 const userSchema = new Schema({
-  // Save username and password of user
   username: { type: String, require: true, unique: true },
   password: { type: String, require: true },
 });
 
 const User = mongoose.model('user', userSchema);
 
+// Saving Google username/password
 const googleSchema = new Schema({
-  // Save username and password of user
   googleId: { type: String, require: true, unique: true },
   username: { type: String, require: true },
 });
 
 const GoogleUser = mongoose.model('googleUser', googleSchema);
-
 
 module.exports = {
   User,

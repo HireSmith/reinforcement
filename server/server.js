@@ -13,13 +13,16 @@ require('./config/passport')(passport);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+//serve static assets 
 app.use(express.static(path.resolve(__dirname, '../src/assets')));
 
 // Initialize passport session
 app.use(passport.initialize());
 
-app.use('/api/question', questionRouter);
-app.use('/api', userRouter);
+// Anything related to questions should go to /question route
+app.use('/question', questionRouter);
+// All other things (login, encryption, users) taken care of in default path
+app.use('/', userRouter);
 
 // Any other request is caught here
 app.use((err, req, res, next) => {
