@@ -20,12 +20,12 @@ router.post('/', questionController.addQuestion, (req, res) =>
 );
 
 // update a question
-router.patch('/', questionController.updateQuestion, (req, res) =>
-  res.status(200).json('Question updated')
-);
+// router.patch('/', questionController.updateQuestion, (req, res) =>
+//   res.status(200).json('Question updated')
+// );
 
 // delete a question
-router.post('/', questionController.deleteQuestion, (req, res) =>
+router.delete('/', questionController.deleteQuestion, (req, res) =>
   res.status(200).json('Question deleted')
 );
 

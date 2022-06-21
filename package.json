@@ -14,7 +14,7 @@
   "keywords": [
     "interview"
   ],
-  "author": "Antonio Ayala, Ju Kim, Hannah Santoyo, Thomas Seo, Tristan Francis",
+  "author": "Antonio Ayala, Ju Kim, Hannah Santoyo, Thomas Seo, Tristen Francis",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/HireSmith/reinforcement/issues"
@@ -22,13 +22,17 @@
   "homepage": "https://github.com/HireSmith/reinforcement#readme",
   "devDependencies": {
     "@babel/core": "^7.18.5",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-react": "^7.17.12",
     "babel": "^6.23.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.2.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^6.7.1",
+    "express": "^4.18.1",
     "html-webpack-plugin": "^5.5.0",
+    "mongoose": "^6.4.0",
     "path": "^0.12.7",
     "style-loader": "^3.3.1",
     "styles-loader": "^4.0.1",

@@ -36,7 +36,7 @@ module.exports = {
     modules: ['node_modules'],
   },
   devServer: {
-    static: ['assets'],
+    static: ['./src/assets'],
     port: 8080
   }
 };
