@@ -22,13 +22,14 @@ userController.bcrypt = (req, res, next) => {
 
 // Signup/save user information in database (mongo)
 // When we create a new user, we get their username/hashed pw to store in the database
+  // receive username from req.body, password from res.locals after it's been initially hashed
 userController.signup = (req, res, next) => {
   User.create(
     // Pass in username from request body and encrypted password
     { username: req.body.username, password: res.locals.encryptedPassword },
     (err, newUser) => {
       if (err) return next(err);
-      // Save user ID into response locals
+      // newUser assigned ._id in DB --> Save as user ID on res.locals
       res.locals.userId = newUser._id;
       return next();
     }
@@ -36,16 +37,18 @@ userController.signup = (req, res, next) => {
 };
 
 // Check credentials and log user into application
-// Finds user with the passed-in username
+// Finds user in DB with username
 userController.login = (req, res, next) => {
   User.find({ username: req.body.username }, (err, result) => {
+    // result gives back User doc {username, pw}
     if (err) return next(err);
     // If no matching usernames, return error
     if (result.length === 0) return next('Incorrect username/password combo');
-    // If there is a user with passed username, use the bcrypt.compare method to compare plaintext password with encrypted password
+    // Finds first user (or only) with matching username, 
+    // use the bcrypt.compare method to compare plaintext password with encrypted password
     bcrypt.compare(req.body.password, result[0].password, (err, match) => {
       if (err) return next(err);
-      // If there is a match, invoke next middleware
+      // Assign doc's ._id as current userId
       if (match) {
         res.locals.userId = result[0]._id;
         return next();
@@ -67,7 +70,7 @@ userController.getUsers = (req, res, next) => {
 
 userController.googleLogin = (req, res, next) => {
 // Successful authentication, redirect home.
-  console.log('google authentication successful!');
+  console.log('Google Auth successful!');
   // store user._id in res.locals
   res.locals.userId = req.user._id;
   return next();

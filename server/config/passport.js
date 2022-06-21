@@ -7,21 +7,23 @@ module.exports = function (passport) {
   passport.use(
     new GoogleStrategy(
       {
-        clientID: '783732985723-dfvjj0bro5mbc1u1ouo4e90ue0hjndcg.apps.googleusercontent.com',
-        clientSecret: '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',
-        callbackURL: 'http://localhost:3001/auth/google/callback',
+        clientID: '67987135390-nksj8nk9hfo0n3qdf0m9tpgkuln3tvi1.apps.googleusercontent.com',
+        clientSecret: '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',
+        callbackURL: 'http://localhost:3000/auth/google/callback',
       },
 
       (accessToken, refreshToken, profile, done) => {
-        console.log('this is our accessToken:', accessToken);
+        // 
+        console.log('the accessToken is:', accessToken);
         // we are checking if the google profile is in our monogDB
         GoogleUser.findOne({ googleId: profile.id }, (err, result) => {
+          // if google user already exists in the db
           if (result) {
-            // already have this user
             console.log('user is: ', result);
             done(null, result);
-          } else if (!result) {
-            // if not, create user in our db
+          } 
+          // if not, create user in our db
+          else if (!result) {
             new GoogleUser({
               googleId: profile.id,
             })
@@ -30,7 +32,9 @@ module.exports = function (passport) {
                 console.log('created new user: ', newUser);
                 done(null, newUser);
               });
-          } else if (err) {
+          } 
+          // otherwise, if we have an error
+          else if (err) {
             console.log(err);
           }
         });

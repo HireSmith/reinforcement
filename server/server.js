@@ -13,21 +13,22 @@ require('./config/passport')(passport);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
 //serve static assets 
 app.use(express.static(path.resolve(__dirname, '../src/assets')));
 
 // Initialize passport session
 app.use(passport.initialize());
 
+// Not using /api anymore
 // Anything related to questions should go to /question route
 app.use('/question', questionRouter);
 // All other things (login, encryption, users) taken care of in default path
 app.use('/', userRouter);
 
-// Any other request is caught here
-app.use((err, req, res, next) => {
-  return res.status(err.status).json(err.message);
-});
+// Uncaught error catch-all route
+app.use((req, res) => res.status(404).send('Error 404: No content found'));
+
 
 // Express global error handler
 app.use((err, req, res, next) => {
