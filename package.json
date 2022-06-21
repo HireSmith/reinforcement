@@ -2,7 +2,7 @@
   "name": "hiresmith",
   "version": "0.1.0",
   "description": "an all in one interview question app",
-  "main": "index.js",
+  "main": "index.tsx",
   "scripts": {
     "start": "nodemon server/server.js",
     "dev": "webpack-dev-server --hot --open && nodemon server/server.js"
@@ -24,6 +24,7 @@
     "@babel/core": "^7.18.5",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
+    "@types/react-dom": "^18.0.5",
     "babel": "^6.23.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.2.5",
@@ -46,7 +47,9 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.2",
     "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
     "redux": "^4.2.0"
   }
 }

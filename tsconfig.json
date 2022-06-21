@@ -1,0 +1,12 @@
+{
+  "include": ["*"],
+  "compilerOptions": {
+    "sourceMap": true,
+    "jsx": "react-jsx",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "noImplicitAny": false
+  }
+}
+
+// No inputs were found in config file '/root/github/Codesmith/projects/reinforcement-project/tsconfig.json'. Specified 'include' paths were '["**/*"]' and 'exclude' paths were '[]'.
