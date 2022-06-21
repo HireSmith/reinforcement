@@ -10,7 +10,7 @@ router.get('/', questionController.getQuestions, (req, res) =>
 );
 
 // retrieve one question in db
-router.get('/:questionId', questionController.findQuestion, (req, res) =>
+router.get('/:id', questionController.findQuestion, (req, res) =>
   res.status(200).json(res.locals.question)
 );
 
