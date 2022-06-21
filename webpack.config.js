@@ -4,10 +4,11 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './index.js',
+  entry: './index.tsx',
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'hiresmith.bundle.js',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -45,16 +46,17 @@ module.exports = {
   //   },
   // },
   devServer: {
+    historyApiFallback: true,
     static: path.resolve(__dirname, './dist'),
     host: 'localhost',
     port: 8080,
     hot: true,
-    proxy: {
-      "/api/**": {
-        target: "http://localhost:3000/",
-        secure: false,
-      },
-    },
+    // proxy: {
+    //   "/api": {
+    //     target: "http://localhost:3000/",
+    //     secure: false,
+    //   },
+    // },
   },
   plugins: [
     new HTMLWebpackPlugin({
@@ -62,6 +64,6 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.css'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.css'],
   },
 };
