@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -37,26 +36,19 @@ module.exports = {
   optimization: {
     sideEffects: true,
   },
-  // resolve: {
-  //   modules: ['node_modules'],
-  // },
-  // devServer: {
-  //   proxy: {
-  //     '/': 'http://localhost:3000',
-  //   },
-  // },
   devServer: {
     historyApiFallback: true,
     static: path.resolve(__dirname, './dist'),
     host: 'localhost',
     port: 8080,
     hot: true,
-    // proxy: {
-    //   "/api": {
-    //     target: "http://localhost:3000/",
-    //     secure: false,
-    //   },
-    // },
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000/",
+        pathRewrite: { '^/api': '' },
+        secure: false,
+      },
+    },
   },
   plugins: [
     new HTMLWebpackPlugin({
