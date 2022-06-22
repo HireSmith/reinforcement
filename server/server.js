@@ -30,15 +30,17 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// const questionRouter = require('./routes/questionRouter');
 const userRouter = require('./routes/userRouter');
 const userController = require('./controllers/userController');
 const cookieController = require('./controllers/cookieController');
 const sessionController = require('./controllers/sessionController');
 
+const questionRouter = require('./routes/questionRouter');
+const questionController = require('./controllers/questionController');
+
 // Not using /api anymore
 // Anything related to questions should go to /question route
-// app.use('/question', questionRouter);
+app.use('/question', questionRouter);
 // All other things (login, encryption, users) taken care of in default path
 app.use('/api', userRouter);
 
