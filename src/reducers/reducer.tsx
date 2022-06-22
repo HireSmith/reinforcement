@@ -5,15 +5,17 @@ type initialState = {
   isLoggedIn: boolean,
   question: [],
   answer: [],
-  company: []
+  company: [],
+  type: []
 }
 
 const initialState = {
   ssid: 0, // session id returned from oauth and bcrypt
-  isLoggedIn: false, // is the user logged in
+  isLoggedIn: true, // is the user logged in
   question: [], // what interview question was asked
   answer: [], // what is the answer to that question
-  company: [] // what company asked the question
+  company: [], // what company asked the question
+  type: [] //type of question
 };
 
 const reducer = (state = initialState, action): object => {
@@ -22,20 +24,22 @@ const reducer = (state = initialState, action): object => {
   //login
 
   // const { question, company, answer } = action.payload;
-  let newQuestion: string, newCompany: string, newAnswer: string
-  const { question, answer, company } = { ...state }
+  let newQuestion: string, newCompany: string, newAnswer: string, newType: string;
+  const { question, answer, company, type } = { ...state }
   switch (action.type) {
     case actionTypes.ADD_CARD:
       // adds a new card
       newQuestion = action.payload.newQuestion;
       newCompany = action.payload.newCompany;
       newAnswer = action.payload.newAnswer;
+      newType = action.payload.newType;
 
       question.push(newQuestion)
       answer.push(newAnswer)
       company.push(newCompany)
+      type.push(newType)
 
-      return { ...state, question, answer, company }
+      return { ...state, question, answer, company, type }
 
     case actionTypes.UPDATE_CARD:
       // updates a card
@@ -44,12 +48,14 @@ const reducer = (state = initialState, action): object => {
       newQuestion = action.payload.question;
       newCompany = action.payload.company;
       newAnswer = action.payload.answer;
+      newType = action.payload.newType;
 
       question[index] = newQuestion
       answer[index] = newAnswer
       company[index] = newCompany
+      type[index] = newType
 
-      return { ...state, question, answer, company }
+      return { ...state, question, answer, company, type }
 
     case actionTypes.LOGGED_IN:
       // updates if logged in

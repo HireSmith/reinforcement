@@ -1,9 +1,9 @@
-import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 
 export default function QuestionCard(props) : JSX.Element {
   return (
@@ -15,6 +15,7 @@ export default function QuestionCard(props) : JSX.Element {
           id="panel1a-header"
         >
           <Typography>{props.company}</Typography>
+          <Typography>{props.type}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>

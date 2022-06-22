@@ -1,25 +1,40 @@
 import QuestionCard from "../components/questioncard"
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
+import { jsx } from "@emotion/react";
 
-const mapStateToProps = state => ({
-  // add pertinent state here
-  company: state.company,
-  question: state.question,
-  answer: state.answer,
-  isLoggedIn: state.isLoggedIn,
-  ssId: state.ssId,
-});
+interface RootState {
+  company: [],
+  question: [],
+  answer: [],
+  type: []
+}
 
-function CardsContainer(props): JSX.Element {
+
+// const mapStateToProps = state => ({
+//   // add pertinent state here
+//   company: state.company,
+//   question: state.question,
+//   answer: state.answer,
+//   isLoggedIn: state.isLoggedIn,
+//   ssId: state.ssId,
+// });
+
+export default function CardsContainer(): JSX.Element {
+
+  const company = useSelector((state: RootState) => state.company);
+  const question = useSelector((state: RootState) => state.question);
+  const answer = useSelector((state: RootState) => state.answer);
+  const type = useSelector((state: RootState) => state.type);
 
   const cardsArr = []
-  for (let i = 0; i < props.question.length; i++) {
+  for (let i = 0; i < question.length; i++) {
     cardsArr.push(
-      <QuestionCard 
+      <QuestionCard
         key={i}
-        company={props.company[i]}
-        question={props.question[i]}
-        answer={props.answer[i]}
+        company={company[i]}
+        question={question[i]}
+        answer={answer[i]}
+        type={type[i]}
         />
     )
   }
@@ -30,4 +45,4 @@ function CardsContainer(props): JSX.Element {
   )
 }
 
-export default connect(mapStateToProps, null)(CardsContainer);
+// export default connect(mapStateToProps, null)(CardsContainer);
