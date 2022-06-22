@@ -24,7 +24,6 @@ function CreatePage(): JSX.Element {
   }
   return (
     <div>
-      <h1>rendering from create page</h1>
       <NavBar />
       <form onSubmit={handleSubmit}>
         <Box sx={{
@@ -36,14 +35,14 @@ function CreatePage(): JSX.Element {
       <TextField onChange={handleChange} name="company" id="company" label="Company" variant="outlined" required={true} margin="normal">Company</TextField>
       <TextField onChange={handleChange} name="question" id="question" label="Question" variant="outlined" required={true} multiline={true} margin="normal">Question</TextField>
       <TextField onChange={handleChange} name="answer" id="answer" label="Answer" variant="outlined" multiline={true} margin="normal">Answer</TextField>
-      <select onChange={handleChange} name="type" id="type" style={{width: "25%", height: "50px", margin: "2px"}}>
+      <select onChange={handleChange} name="type" id="type" style={{width: "205px", height: "50px", margin: "2px"}}>
         <option value="Non-Technical">Non-Technical</option>
         <option value="Algorithm">Algorithm</option>
         <option value="System Design">System Design</option>
         <option value="Other Technical">Other Technical</option>
         <option value="Other">Other</option>  
       </select>
-      <button id="submit" type="submit" style={{width: "25%", height: "25px", margin: "10px"}}>Submit</button>
+      <button id="submit" type="submit" style={{width: "205px", height: "25px", margin: "10px"}}>Submit</button>
       </Box>
       </form>
     </div>
