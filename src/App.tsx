@@ -4,7 +4,7 @@ import LoginPage from './routes/LoginPage'
 import UserPage from './routes/UserPage'
 import SignupPage from './routes/SignupPage';
 import CreatePage from './routes/CreatePage'
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 
 export default () => {
   return (
@@ -21,19 +21,3 @@ export default () => {
    </Fragment>
   )
 }
-
-// <Router>
-  // <Routes>
-  //   <Route path="/" element={<Login />} />
-
-  //   <Route path="/main/" element={<Main />}>
-  //     <Route path="searchTrips" element={<SearchTrips/>} />
-  //     {/* Have a Saved List/Likes Page nested in Main */}``
-  //     <Route path="savedTrips" element={<SavedTrips/>} />
-  //   </Route>
-  //   <Route path='/error' element={<Error/>} />
-  //   {/* <Route path="/floppyseal" element={<h1></h1>} >
-  //       <Route path="avi" element={<Error />} />
-  //   </Route> */}
-  // </Routes>
-// </Router>
