@@ -49,16 +49,26 @@
     "webpack-dev-server": "^4.9.2"
   },
   "dependencies": {
+<<<<<<< HEAD
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
     "express": "^4.18.1",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
+=======
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.8.5",
+    "@mui/styled-engine-sc": "^5.8.0",
+>>>>>>> b61ccdbf0529be92d4a45459a9b36d1fa605e0a9
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.2",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
-    "redux": "^4.2.0"
+    "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9",
+    "styled-components": "^5.3.5"
   }
 }
