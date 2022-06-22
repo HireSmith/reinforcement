@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const questionController = require('../controllers/questionController');
+const sessionController = require('../controllers/sessionController');
 
 // Retrieves all questions from DB
 router.get(
