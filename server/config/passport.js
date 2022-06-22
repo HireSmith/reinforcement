@@ -19,7 +19,7 @@ module.exports = function (passport) {
         GoogleUser.findOne({ googleId: profile.id }, (err, result) => {
           // if google user already exists in the db
           if (result) {
-            console.log('user is: ', result);
+            console.log('GoogleUser found:', result);
             done(null, result);
           } 
           // if not, create user in our db
@@ -29,13 +29,13 @@ module.exports = function (passport) {
             })
               .save()
               .then((newUser) => {
-                console.log('created new user: ', newUser);
+                console.log('New GoogleUser is:', newUser);
                 done(null, newUser);
               });
           } 
           // otherwise, if we have an error
           else if (err) {
-            console.log('error from within passport')
+            console.log('passport error occurred')
             console.log(err);
           }
         });
