@@ -5,6 +5,7 @@ const PORT = 3000;
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 
+
 // const questionRouter = require('./routes/questionRouter');
 const userRouter = require('./routes/userRouter');
 const userController = require('./controllers/userController');
@@ -48,8 +49,8 @@ app.get(
     console.log('ssid:', res.locals.ssid);
     // we send the ssid back to the front end
     res.status(200).json({ ssid: res.locals.ssid });
-  }
-);
+  });
+
 
 
 // Uncaught error catch-all route

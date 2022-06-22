@@ -35,6 +35,7 @@ module.exports = function (passport) {
           } 
           // otherwise, if we have an error
           else if (err) {
+            console.log('error from within passport')
             console.log(err);
           }
         });
