@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,10 +12,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { connect, useDispatch } from 'react-redux';
 
 const theme = createTheme();
 
-export default function SignupPage(): JSX.Element {
+function SignupPage(): JSX.Element {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -24,6 +25,34 @@ export default function SignupPage(): JSX.Element {
       password: data.get('password'),
     });
   };
+
+  const dispatch = useDispatch();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleUsername = (e) => {
+    setUsername(e.target.value);
+  }
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  }
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    fetch('http://localhost:3000/api/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+    })
+      .then((res) => res.json())
+      .then(() => console.log('User Successfully Signed Up'))
+      .catch((err) => console.log(err));
+  };  
 
   return (
     <ThemeProvider theme={theme}>
@@ -43,7 +72,7 @@ export default function SignupPage(): JSX.Element {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate onSubmit={handleSignUp} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -57,13 +86,28 @@ export default function SignupPage(): JSX.Element {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  margin="normal"
                   required
                   fullWidth
-                  name="password"
+                  id="username"
+                  value={username}
+                  onChange={handleUsername}
+                  label="Username"
+                  name="username"
+                  type="username"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="password"
+                  value={password}
+                  onChange={handlePassword}
                   label="Password"
                   type="password"
-                  id="password"
-                  autoComplete="new-password"
                 />
               </Grid>
               {/* <Grid item xs={12}>
@@ -78,6 +122,7 @@ export default function SignupPage(): JSX.Element {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={handleSignUp}
             >
               Sign Up
             </Button>
@@ -94,3 +139,5 @@ export default function SignupPage(): JSX.Element {
     </ThemeProvider>
   );
 }
+
+export default connect(null, null)(SignupPage);

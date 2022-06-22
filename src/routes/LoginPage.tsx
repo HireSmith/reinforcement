@@ -42,27 +42,9 @@ function LoginPage() {
   const handleUsername = (e) => {
     setUsername(e.target.value);
   }
-
   const handlePassword = (e) => {
     setPassword(e.target.value);
   }
-
-  const handleSignUp = (e) => {
-    e.preventDefault();
-    fetch('http://localhost:3000/api/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    })
-    .then((res) => res.json())
-    .then(() => console.log('User Successfully Signed Up'))
-    .catch((err) => console.log(err));
-  };  
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -173,15 +155,6 @@ function LoginPage() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onClick={handleSignUp}
-            >
-              Sign Up
-            </Button>
 
             <Button
               type="submit"

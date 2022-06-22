@@ -9,7 +9,7 @@ type initialState = {
 }
 
 const initialState = {
-  ssId: 0, // session id returned from oauth and bcrypt
+  ssid: 0, // session id returned from oauth and bcrypt
   isLoggedIn: false, // is the user logged in
   question: [], // what interview question was asked
   answer: [], // what is the answer to that question
@@ -56,6 +56,13 @@ const reducer = (state = initialState, action): object => {
       const { ssid } = action.payload;
       const loggedIn = true
       return { ...state, ssid, isLoggedIn: loggedIn }
+
+    // case actionTypes.LOGGED_OUT:
+    //   // updates if logged out
+    //   ssid = 0;
+    //   const loggedIn = false
+    //   return { ...state, ssid, isLoggedIn: loggedIn }
+
     default:
       return state;
   }

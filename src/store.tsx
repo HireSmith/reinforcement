@@ -1,9 +1,9 @@
 import { createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension';
-import reducers from './reducers/reducer'
+import reducer from './reducers/reducer'
 
 const store = createStore(
-  reducers,
+  reducer,
   composeWithDevTools(),
 	
 );

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import LoginPage from '../routes/LoginPage'
+// import LoginPage from '../routes/LoginPage'
 
 export default function NavBar() : JSX.Element {
 	return (
@@ -12,3 +12,4 @@ export default function NavBar() : JSX.Element {
 		</nav>
 	)
 }
+

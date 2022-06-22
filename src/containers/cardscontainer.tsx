@@ -1,5 +1,4 @@
 import QuestionCard from "../components/questioncard"
-// import { useSelector } from 'react-redux'
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
@@ -12,10 +11,6 @@ const mapStateToProps = state => ({
 });
 
 function CardsContainer(props): JSX.Element {
-	
-	// const company : [] = useSelector(state => state.company);
-	// const question : [] = useSelector(state => state.question);
-	// const answer : [] = useSelector(state => state.answer);
 
   const cardsArr = []
   for (let i = 0; i < props.question.length; i++) {
@@ -29,7 +24,7 @@ function CardsContainer(props): JSX.Element {
     )
   }
   return(
-    <div>
+    <div id="cards-container">
       {cardsArr}
     </div>
   )
