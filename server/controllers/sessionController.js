@@ -9,6 +9,7 @@ sessionController.startSession = (req, res, next) => {
     if (err && err.code !== 11000) return next(err);
     // Otherwise, set user's id as cookieId
     res.locals.ssid = res.locals.userId;
+    console.log('Session started');
     return next();
   });
 };
