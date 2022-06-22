@@ -1,6 +1,6 @@
 import React from 'react';
 
-function UserPage() {
+function UserPage(): JSX.Element {
   return (
     <div>
       <h1>rendering from user page</h1>
