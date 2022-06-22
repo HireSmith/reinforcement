@@ -1,6 +1,6 @@
 const path = require('path');
 const fetch = require('node-fetch');
-const db = require('../models/questionModels');
+const db = require('../models/questionModel');
 
 const questionController = {};
 
@@ -10,7 +10,7 @@ const baseErr = { log: 'Express error handler caught in question controller' };
 // CREATE TABLE cards (
 //     "_id" serial NOT NULL,
 //     "user_id" integer,
-//     "date" DATE NOT NULL DEFAULT 'GETDATE()',
+//     "date" DATE,
 //     "company" varchar,
 //     "question" varchar NOT NULL,
 //     "answer" varchar,
@@ -18,27 +18,27 @@ const baseErr = { log: 'Express error handler caught in question controller' };
 //     CONSTRAINT "cards_pk" PRIMARY KEY ("_id")
 // ) ;
 
-// CREATE TABLE cards (
+// CREATE TABLE q (
 //     _id serial NOT NULL,
 //     user_id integer,
-//     date DATE NOT NULL DEFAULT 'GETDATE()',
+//     date DATE NOT NULL DEFAULT now(),
 //     company varchar,
 //     question varchar NOT NULL,
 //     answer varchar,
 //     question_type varchar NOT NULL,
-//     CONSTRAINT cards_pk PRIMARY KEY (_id)
+//     CONSTRAINT q_pk PRIMARY KEY (_id)
 // ) ;
 
-//   INSERT INTO cards (_id,user_id,date,company,question,answer,question_type)
+//   INSERT INTO q (_id,user_id,company,question,answer,question_type)
 //   VALUES
-//       ('0', '0', '', 'facebook', 'question', 'answer', 'SDI'),
-//       ('1', '1', '', 'facebook', 'question', 'answer', 'leetcode');
+//       ('0', '0', 'facebook', 'question', 'answer', 'SDI'),
+//       ('1', '1', 'facebook', 'question', 'answer', 'leetcode');
 
 
 questionController.getQuestions = async (req, res, next) => {
   try {
     const str = `SELECT * 
-    FROM cards c`;
+    FROM q`;
 
     const data = await db.query(str);
     res.locals.questionArr = data.rows; //returns array of question objs
@@ -72,8 +72,8 @@ questionController.getQuestion = async (req, res, next) => {
   const { _id } = req.params;
   try {
     const str = `SELECT * 
-    FROM cards c 
-    WHERE m._id=$1`;
+    FROM q 
+    WHERE q._id=$1`;
     const params = [_id];
 
     const data = await db.query(str, params);
@@ -90,11 +90,11 @@ questionController.getQuestion = async (req, res, next) => {
 
 
 questionController.addQuestion = async (req, res, next) => {
-  const { _id, user_id, date, company, question, answer, question_type } = req.body;
+  const { user_id, company, question, answer, question_type } = req.body;
   const str = `
-  INSERT INTO memes ("_id", "user_id", "date", "company", "question", "answer", "question_type")
-  VALUES ($1, $2, $3, $4, $5, $6, $7)`;
-  const params = [_id, user_id, date, company, question, answer, question_type];
+  INSERT INTO q ("user_id", "company", "question", "answer", "question_type")
+  VALUES ($2, $4, $5, $6, $7)`;
+  const params = [user_id, company, question, answer, question_type];
 
   try {
     const data = await db.query(str, params);
@@ -113,9 +113,9 @@ questionController.updateQuestion = async (req, res, next) => {
   console.log(user_id);
 
   const str = `
-  UPDATE cards c
+  UPDATE q
   SET "_id"=$1, "user_id"=$2, "date"=$3, "company"=$4, "question"=$5, "answer"=$6, "question_type"=$7
-  WHERE m._id=$8`;
+  WHERE q._id=$8`;
 
   const params = [_id, user_id, date, company, question, answer, question_type, updateId];
 
@@ -136,8 +136,8 @@ questionController.deleteQuestion = async (req, res, next) => {
   const { deleteId } = req.params;
   try {
     const str = `DELETE 
-    FROM cards c
-    WHERE m._id=${deleteId}`;
+    FROM q
+    WHERE q._id=${deleteId}`;
 
     const data = await db.query(str);
     console.log(data);

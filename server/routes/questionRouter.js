@@ -6,7 +6,7 @@ const sessionController = require('../controllers/sessionController');
 
 //retrieves array of Question info objects
 router.get('/', 
-  sessionController.isLoggedIn,
+  // sessionController.isLoggedIn,
   questionController.getQuestions, 
   (req, res) =>
     res.status(200).json(res.locals.questionArr),
@@ -14,26 +14,26 @@ router.get('/',
 
 //retrieves object of Question info
 router.get('/:id', 
-  sessionController.isLoggedIn,
+  // sessionController.isLoggedIn,
   questionController.getQuestion, 
   (req, res) =>
     res.status(200).json(res.locals.questionObj),
 );
 
 router.post('/', 
-  sessionController.isLoggedIn,
+  // sessionController.isLoggedIn,
   questionController.addQuestion, (req, res) =>
     res.status(200).json('Question Added!'),
 );
 
 router.put('/', 
-  sessionController.isLoggedIn,
+  // sessionController.isLoggedIn,
   questionController.updateQuestion, (req, res) => 
     res.status(200).json('Question Updated!')
 );
 
 router.delete('/:deleteId', 
-  sessionController.isLoggedIn,
+  // sessionController.isLoggedIn,
   questionController.deleteQuestion, (req, res) =>
     res.status(200).json('Question Deleted!'),
 );
