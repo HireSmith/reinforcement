@@ -1,0 +1,5 @@
+export const ADD_CARD: string = 'ADD_CARD'
+export const UPDATE_CARD: string = 'UPDATE_CARD'
+export const LOGGED_IN: string = 'LOGGED_IN'
+export const LOGGED_OUT: string = 'LOGGED_OUT'
+// export const SET_SSID: string = 'SET_SSID'
