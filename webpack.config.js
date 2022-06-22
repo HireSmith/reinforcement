@@ -41,13 +41,22 @@ module.exports = {
     host: 'localhost',
     port: 8080,
     hot: true,
+    headers: { "Access-Control-Allow-Origin": "*" },
+
+    //front end proxy. lets back end listen to whichever port youre on
     proxy: {
-      "/api": {
+      "/api/**": {
         target: "http://localhost:3000/",
-        pathRewrite: { '^/api': '' },
         secure: false,
       },
     },
+    // proxy: {
+    //   "/api": {
+    //     target: "http://localhost:3000/",
+    //     pathRewrite: { '^/api': '' },
+    //     secure: false,
+    //   },
+    // },
   },
   plugins: [
     new HTMLWebpackPlugin({
