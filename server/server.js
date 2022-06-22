@@ -7,6 +7,9 @@ const passport = require('passport');
 
 // const questionRouter = require('./routes/questionRouter');
 const userRouter = require('./routes/userRouter');
+const userController = require('./controllers/userController');
+const cookieController = require('./controllers/cookieController');
+const sessionController = require('./controllers/sessionController');
 
 require('./config/passport')(passport);
 
@@ -19,17 +22,35 @@ app.use(express.static(path.resolve(__dirname, '../src/assets')));
 
 // Initialize passport session
 app.use(passport.initialize());
-
-app.get('/', function (req, res) {
-  res.send('Hello World!'); // This will serve your request to '/'.
-});
-
+// app.use(passport.session());
 
 // Not using /api anymore
 // Anything related to questions should go to /question route
 // app.use('/question', questionRouter);
 // All other things (login, encryption, users) taken care of in default path
 app.use('/api', userRouter);
+
+// Similar process to regular login, but we (on req.body) are not sending anything, passport/google login is handling that for us
+  // REQ.BODY: n/a
+  // RES.LOCALS: ssid (userId or User's ._id in DB)
+// first passport auth
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
+// if user does ALLOW, then they are automatically redirected to the callback endpoint
+app.get(
+  '/auth/google/callback',
+  // passport.auth gives ._id of GoogleUser
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  // save ._id as userId
+  userController.googleLogin,
+  cookieController.setSSIDCookie,
+  sessionController.startSession,
+  (req, res) => {
+    console.log('ssid:', res.locals.ssid);
+    // we send the ssid back to the front end
+    res.status(200).json({ ssid: res.locals.ssid });
+  }
+);
+
 
 // Uncaught error catch-all route
 app.use((req, res) => res.status(404).send('Error 404: No content found'));
