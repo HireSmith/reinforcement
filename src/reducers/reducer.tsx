@@ -9,24 +9,30 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-//add card
-//update card
-//login
-  
-  const { question, company, answer } = action.payload;
+  //add card
+  //update card
+  //login
+
+  // const { question, company, answer } = action.payload;
+  let question, company, answer
   switch (action.type) {
     case actionTypes.ADD_CARD:
       // adds a new card
+      question = action.payload.question;
+      company = action.payload.company;
+      answer = action.payload.answer;
       return { ...state, question, answer, company }
-    
+
     case actionTypes.UPDATE_CARD:
       // updates a card
+      question = action.payload.question;
+      company = action.payload.company;
+      answer = action.payload.answer;
       return { ...state, question, answer, company }
-    
+
     case actionTypes.LOGGED_IN:
       // updates if logged in
       const { ssId } = action.payload;
-      const isLoggedIn = state.isLoggedIn
       const loggedIn = true
       return { ...state, ssId, isLoggedIn: loggedIn }
     default:
