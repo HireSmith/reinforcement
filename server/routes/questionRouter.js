@@ -1,47 +1,41 @@
 const express = require('express');
 const router = express.Router();
 const questionController = require('../controllers/questionController');
+const sessionController = require('../controllers/sessionController');
 
-// Retrieves all questions from DB
-router.get(
-  '/questions',
+
+//retrieves array of Question info objects
+router.get('/', 
   sessionController.isLoggedIn,
-  questionController.getQuestions,
-  (req, res) => {
-    res.status(200).json(res.locals.questions);
-  }
+  questionController.getQuestions, 
+  (req, res) =>
+    res.status(200).json(res.locals.questionArr),
 );
 
-// Posting questions to DB
-router.post(
-  '/questions',
-  // check if current user is signed in
+//retrieves object of Question info
+router.get('/:id', 
   sessionController.isLoggedIn,
-  // add question to SQL database
-  questionController.addQuestion,
-  (req, res) => {
-    res.status(200).json('Question Uploaded Successfully');
-  }
+  questionController.getQuestion, 
+  (req, res) =>
+    res.status(200).json(res.locals.questionObj),
 );
 
-// retrieves all questions in db
-router.get('/', questionController.getQuestions, (req, res) =>
-  res.status(200).json(res.locals.allQuestions)
+router.post('/', 
+  sessionController.isLoggedIn,
+  questionController.addQuestion, (req, res) =>
+    res.status(200).json('Question Added!'),
 );
 
-// retrieve one question in db
-router.get('/:id', questionController.findQuestion, (req, res) =>
-  res.status(200).json(res.locals.question)
+router.put('/', 
+  sessionController.isLoggedIn,
+  questionController.updateQuestion, (req, res) => 
+    res.status(200).json('Question Updated!')
 );
 
-// post a question
-router.post('/', questionController.addQuestion, (req, res) =>
-  res.status(200).json('Question added')
-);
-
-// delete a question
-router.delete('/', questionController.deleteQuestion, (req, res) =>
-  res.status(200).json('Question deleted')
+router.delete('/:deleteId', 
+  sessionController.isLoggedIn,
+  questionController.deleteQuestion, (req, res) =>
+    res.status(200).json('Question Deleted!'),
 );
 
 module.exports = router;
