@@ -40,7 +40,7 @@ const questionController = require('./controllers/questionController');
 
 // Not using /api anymore
 // Anything related to questions should go to /question route
-app.use('/question', questionRouter);
+app.use('/api/question', questionRouter);
 // All other things (login, encryption, users) taken care of in default path
 app.use('/api', userRouter);
 

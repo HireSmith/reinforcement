@@ -93,7 +93,7 @@ questionController.addQuestion = async (req, res, next) => {
   const { user_id, company, question, answer, question_type } = req.body;
   const str = `
   INSERT INTO q ("user_id", "company", "question", "answer", "question_type")
-  VALUES ($2, $4, $5, $6, $7)`;
+  VALUES ($1, $2, $3, $4, $5)`;
   const params = [user_id, company, question, answer, question_type];
 
   try {

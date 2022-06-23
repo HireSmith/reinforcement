@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function NavBar() : JSX.Element {
 	return (
-		<nav className='navbar' style={{display: 'flex', justifyContent: 'space-around', fontSize: '20px'}}>
+		<nav className='navbar' style={{display: 'flex', justifyContent: 'space-around', fontSize: '20px', margin: "18px"}}>
 			<Link to='/'>Home</Link>
 			<Link to='/create'>Create</Link>
 			{/* <Link to='/user'>Profile</Link> */}
